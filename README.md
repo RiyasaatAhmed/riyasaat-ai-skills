@@ -28,6 +28,16 @@ npx skills add RiyasaatAhmed/riyasaat-ai-skills --skill at-a-glance  # one skill
 
 **Claude.ai:** zip a folder from `skills/` and upload it under Settings, Capabilities, Skills.
 
+## Updates
+
+Every commit to `main` is a new version. No version number to bump.
+
+| Installed with | Get updates |
+|---|---|
+| **Claude Code plugin** | Turn on auto-update once: `/plugin`, then **Marketplaces**, then `riyasaat-ai-skills`. Or update by hand with `/plugin marketplace update riyasaat-ai-skills`. |
+| **Skills CLI** | `npx skills update` |
+| **By hand or Claude.ai** | Copy or upload the folder again. |
+
 ## at-a-glance
 
 | Step | What changes |

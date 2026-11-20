@@ -1,0 +1,10 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "groupings": [
+    {
+      "title": "Writing",
+      "description": "Make AI answers readable at a glance without changing their meaning.",
+      "skills": ["at-a-glance"]
+    }
+  ]
+}
