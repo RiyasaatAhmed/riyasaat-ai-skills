@@ -1,0 +1,19 @@
+{
+  "name": "riyasaat-ai-skills",
+  "owner": {
+    "name": "Riyasaat Ahmed"
+  },
+  "metadata": {
+    "description": "Agent skills by Riyasaat Ahmed for Claude Code, Claude.ai and other agents.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "at-a-glance",
+      "description": "Makes AI responses readable at a glance: answer first, tables and steps, no filler.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/at-a-glance"]
+    }
+  ]
+}
