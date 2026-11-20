@@ -2,6 +2,18 @@
 
 Each pair shows one rule from [SKILL.md](SKILL.md) at work.
 
+## Buried answer → answer first
+
+**Before:**
+
+> Great question! There are a few different ways you could approach this, and it really depends on your specific situation and what you're trying to achieve. Generally speaking, many developers find that using environment variables is a good option because it keeps secrets out of the code, although some people prefer config files, which can also work well in certain cases. Ultimately, I'd recommend environment variables for most use cases.
+
+**After:**
+
+> Use environment variables. They keep secrets out of your code and out of git.
+>
+> Use a config file only for non-secret settings you want to commit.
+
 ## Steps in order → numbered list
 
 **Before:**
@@ -51,7 +63,7 @@ Each pair shows one rule from [SKILL.md](SKILL.md) at work.
 > ```
 > **Check:** run `npm run dev` again. It starts without the error.
 
-## Explanation → answer line, then bullets
+## Explanation → answer line, then a short paragraph
 
 **Before:**
 
@@ -59,7 +71,35 @@ Each pair shows one rule from [SKILL.md](SKILL.md) at work.
 
 **After:**
 
-> **A closure is a function that remembers the variables around it when it was created.**
+> A closure is a function that remembers the variables around it when it was created.
 >
-> - **Keeps working:** it can read those variables after the outer function returns.
-> - **Used for:** private state, and functions that build other functions.
+> It can still read those variables after the outer function returns. That makes it useful for private state, and for functions that build other functions.
+
+## Unsure → one honest hedge, plus how to check
+
+**Before:**
+
+> It's hard to say for sure without more information, but it could possibly be a caching issue, or it might be related to the CDN, or perhaps the build didn't deploy correctly, so you may want to look into a few of these things.
+
+**After:**
+
+> Probably a stale cache. I can't confirm it from here.
+>
+> **Check:** open the page in a private window. If the change shows up there, it's the cache.
+
+## Shorter, but the warning stays
+
+**Before:**
+
+> To rotate the key, create the new key first and deploy it to staging, then verify a signed request works, and only after that revoke the old key, because if you revoke the old one first everything that still uses it will break and you'll have an outage.
+
+**After:**
+
+> 4 steps:
+>
+> 1. Create the new key.
+> 2. Deploy it to staging.
+> 3. Verify 1 signed request.
+> 4. Revoke the old key.
+>
+> **Watch out:** revoking first causes an outage.

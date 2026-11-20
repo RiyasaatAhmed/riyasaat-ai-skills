@@ -33,11 +33,12 @@ npx skills add RiyasaatAhmed/riyasaat-ai-skills --skill at-a-glance  # one skill
 | Step | What changes |
 |---|---|
 | **Answer first** | Line 1 is the answer. No warm-up. |
-| **Shape** | Tables for comparisons, numbered lists for steps, bullets for ideas. |
-| **Rules** | Sentences under 25 words, paragraphs of 3 sentences at most, plain words. |
+| **Shape** | A short paragraph by default. Tables for comparisons, numbered lists for steps. Bold only labels and one key phrase. |
+| **Rules** | Short sentences, short paragraphs, plain words. Targets, not laws. |
 | **Cut filler** | No "Great question!", no recaps, no stacked hedges. |
-| **Length budget** | A yes / no question gets 1 to 2 lines, not 3 paragraphs. |
-| **Scan test** | Read only the bold words and first words. The point still lands. |
+| **Length budget** | A yes / no question gets 1 to 2 lines. Asking for depth skips the budget. |
+| **Scan test** | Read only the first line and first words. The point still lands. |
+| **Facts stay** | Shorter never drops a warning or a condition, or sounds surer than the facts. |
 
 **Make it always on:** Claude loads a skill when the request matches its description. To apply it to every answer, add this line to your `CLAUDE.md`:
 
@@ -45,13 +46,13 @@ npx skills add RiyasaatAhmed/riyasaat-ai-skills --skill at-a-glance  # one skill
 Use the at-a-glance skill for every answer longer than 2 sentences.
 ```
 
-**Check a draft:** `scan_check.py` flags long sentences, long paragraphs and em-dashes. It needs only Python 3, and prints nothing when the text is clean.
+**Check a draft:** `scan_check.py` flags long sentences, long paragraphs, em-dashes, filler phrases and bolded whole sentences. It needs only Python 3, and prints nothing when the text is clean.
 
 ```
 python3 skills/at-a-glance/scan_check.py - < draft.md
 ```
 
-See [examples.md](skills/at-a-glance/examples.md) for before and after pairs.
+See [examples.md](skills/at-a-glance/examples.md) for before and after pairs, and [evals.md](skills/at-a-glance/evals.md) for test cases to run after a change.
 
 ## Add a new skill
 

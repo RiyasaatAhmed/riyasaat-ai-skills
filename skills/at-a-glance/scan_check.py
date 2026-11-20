@@ -4,7 +4,8 @@ Usage:
     python3 scan_check.py FILE [FILE ...]
     python3 scan_check.py - < draft.md
 
-Flags sentences over 25 words, paragraphs over 3 sentences, and em-dashes.
+Flags sentences over 25 words, paragraphs over 3 sentences, em-dashes, filler phrases
+and bolded whole sentences.
 Prints nothing and exits 0 when the text is clean. Code blocks and table borders are skipped.
 """
 
@@ -14,8 +15,8 @@ from pathlib import Path
 
 # ---------- Constants ----------
 
-MAX_WORDS = 25  # longest sentence allowed, from SKILL.md step 3
-MAX_SENTENCES = 3  # longest paragraph allowed, from SKILL.md step 3
+MAX_WORDS = 25  # a sentence longer than this is a sign to split, from SKILL.md step 3
+MAX_SENTENCES = 3  # a paragraph longer than this is a sign to split, from SKILL.md step 3
 EM_DASH = "—"
 CODE_FENCE = "```"  # opens and closes a code block
 NEW_BLOCK = re.compile(r"^\s*(#|[-*+] |\d+\. |\||$)")  # a heading, list item, table row or blank line
@@ -27,6 +28,13 @@ MARKUP = re.compile(r"[*_#]|\[!\w+\]")  # bold, headings, callout labels
 WORD = re.compile(r"[A-Za-z0-9][\w'%.-]*")  # a word, or a number like 15.0%
 TABLE_BORDER = re.compile(r"^\|?[\s|:-]+\|?$")  # the |---|---| line under a table header
 SHOWN = 80  # characters of a flagged sentence shown
+BOLD_SENTENCE = re.compile(r"\*\*[^*]*[^.*][.!?]\*\*")  # **A whole sentence.** in bold, not **How do I...**
+FILLER = re.compile(  # phrases from SKILL.md step 4; ['’] matches straight and curly apostrophes
+    r"\b(great question|happy to help|i hope this helps|let me know if you have|feel free to ask"
+    r"|let me explain|here['’]s a breakdown|let['’]s dive|in summary|in conclusion|to sum up"
+    r"|it(?:['’]s| is) (?:important|worth) (?:to note|noting)|at its core|you['’]re asking)\b",
+    re.IGNORECASE,
+)
 
 
 def blocks(text):
@@ -64,6 +72,10 @@ def problems(text):
     for number, block, is_paragraph in blocks(text):
         if EM_DASH in block:
             found.append((number, "em-dash: use a comma or a period"))
+        if BOLD_SENTENCE.search(block):
+            found.append((number, "bold sentence: bold a label or one key phrase instead"))
+        for phrase in sorted({m.lower() for m in FILLER.findall(block)}):
+            found.append((number, f'filler: "{phrase}"'))
         plain = MARKUP.sub("", INLINE_CODE.sub("code", LINK.sub(r"\1", block))).strip()
         sentences = [s for s in SENTENCE_END.split(plain) if WORD.search(s)]
         if is_paragraph and len(sentences) > MAX_SENTENCES:
