@@ -5,6 +5,11 @@
       "title": "Writing",
       "description": "Make AI answers readable at a glance without changing their meaning.",
       "skills": ["at-a-glance"]
+    },
+    {
+      "title": "Frontend",
+      "description": "Make AI-written UI code complete, accessible and ready for real data.",
+      "skills": ["ui-states"]
     }
   ]
 }

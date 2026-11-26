@@ -13,7 +13,18 @@
       "description": "Makes AI responses readable at a glance: answer first, tables and steps, no filler.",
       "source": "./",
       "strict": false,
-      "skills": ["./skills/at-a-glance"]
+      "skills": ["./skills/at-a-glance"],
+      "category": "writing",
+      "tags": ["writing", "readability", "formatting"]
+    },
+    {
+      "name": "ui-states",
+      "description": "Makes AI-built frontend UI handle loading, empty, error, partial, stale, offline and long-text states, not only the happy path.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/ui-states"],
+      "category": "frontend",
+      "tags": ["frontend", "react", "ux", "accessibility", "error-handling"]
     }
   ]
 }

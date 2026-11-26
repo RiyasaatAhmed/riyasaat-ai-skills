@@ -2,3 +2,15 @@
 __pycache__/
 *.pyc
 *.zip
+/reports
+/research_notes
+node_modules/
+dev/*/harness/outputs/
+dev/*/harness/results*.json
+dev/*/.private/
+dev/*/harness/grader.json
+
+# Local skill installs, not part of the repo
+.agents/
+.claude/
+skills-lock.json
